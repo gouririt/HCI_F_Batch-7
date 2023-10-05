@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      body,
+      h1,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+
+      header {
+        background-color: #3498db;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      .login-button {
+        display: block;
+        width: 100%;
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .login-button:hover {
+        background-color: #2980b9;
+      }
+
+      .hidden-interface {
+        display: none;
+      }
+
+      .interface-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .welcome-message {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .logout-button {
+        background-color: #e74c3c;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      a:link,
+      a:visited {
+        text-decoration: none;
+      }
+
+      .logout-button:hover {
+        background-color: #c0392b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: gray;
+      }
+
+      dl {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li a:hover {
+        background-color: black;
+      }
+
+      .logout-link:hover {
+        background-color: yellow;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .center {
+        margin: auto;
+        width: 50%;
+        border: 3px solid white;
+        padding: 10px;
+        color: white;
+      }
+
+      .k {
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+
+      #myInput {
+        background-image: url("/css/searchicon.png");
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+      }
+
+      #myUL {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #myUL li a {
+        border: 1px solid #ddd;
+        margin-top: -1px;
+        background-color: #faebd7;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        display: block;
+      }
+
+      body {
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      #myUL li a:hover:not(.header) {
+        background-color: #eee;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover,
+      .dropdown:hover .dropbutton {
+        background-color: black;
+      }
+
+      li.dropdown {
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: yellow;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container" id="loginContainer">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required />
+        </div>
+        <button class="login-button" type="button" onclick="checkCredentials()">
+          Login
+        </button>
+      </form>
+    </div>
+
+    <script>
+      function checkCredentials() {
+        const validUsername = "sru";
+        const validPassword = "12345678";
+
+        const usernameInput = document.getElementById("username").value;
+        const passwordInput = document.getElementById("password").value;
+
+        if (
+          usernameInput === validUsername &&
+          passwordInput === validPassword
+        ) {
+          window.location.href = "mainpage.html";
+        } else {
+          alert("Invalid credentials. Please try again.");
+        }
+      }
+    </script>
+  </body>
+</html>
